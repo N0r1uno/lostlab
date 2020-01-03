@@ -32,7 +32,8 @@ public class Actor : MonoBehaviour
 
     public void ApplyMovement()
     {
-        if (IsGrounded())
+        bool grounded = IsGrounded();
+        if (grounded)
         {
             if (input.isJumping)
                 rigidbody.AddForce(transform.up * jumpForce);
@@ -41,9 +42,11 @@ public class Actor : MonoBehaviour
             rigidbody.velocity = new Vector2(Mathf.Clamp(rigidbody.velocity.x + input.horizontalInput * inAirSpeed, -speed, speed), rigidbody.velocity.y);
 
         //direction
-        direction = input.direction;
+        direction = (input.horizontalInput == 0) ? direction : (input.horizontalInput > 0) ? Actor.MovementDirection.RIGHT : Actor.MovementDirection.LEFT;
         spriteRenderer.flipX = direction == MovementDirection.LEFT;
     }
+
+    public Vector3 GetCurrentVelocity() => rigidbody.velocity;
 
     virtual public bool IsPlayer => false;
 
@@ -54,40 +57,5 @@ public class Actor : MonoBehaviour
         if (result[0].collider == null)
             return false;
         return collider.IsTouching(result[0].collider);
-    }
-
-    public class InputAction
-    {
-        public float horizontalInput;
-        public bool isJumping, isCrouching, isSprinting;
-        public MovementDirection direction;
-
-        public InputAction()
-        {
-            horizontalInput = 0f;
-            isJumping = false;
-            isCrouching = false;
-            isSprinting = false;
-        }
-
-        public void Set(float horizontalInput, bool isJumping, bool isCrouching, bool isSprinting)
-        {
-            this.horizontalInput = horizontalInput;
-            this.isJumping = isJumping;
-            this.isCrouching = isCrouching;
-            this.isSprinting = isSprinting;
-            direction = (horizontalInput == 0) ? direction : (horizontalInput > 0) ? MovementDirection.RIGHT : MovementDirection.LEFT;
-        }
-
-        public void Get()
-        {
-            Set(Input.GetAxis("Horizontal"), Input.GetKeyDown(KeyCode.Space), Input.GetKey(KeyCode.LeftControl), Input.GetKey(KeyCode.LeftShift));
-        }
-
-        override //TODO
-        public string ToString()
-        {
-            return "";
-        }
     }
 }
