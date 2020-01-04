@@ -8,6 +8,7 @@ public class Player : Actor
     {
         input.Get();
         ApplyMovement();
+        ApplyAnimation();
     }
 
     override

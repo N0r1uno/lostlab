@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class Actor : MonoBehaviour
 {
     public enum MovementDirection
@@ -22,11 +23,13 @@ public class Actor : MonoBehaviour
     private new Rigidbody2D rigidbody;
     private new Collider2D collider;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         input = new InputAction();
     }
 
@@ -44,6 +47,12 @@ public class Actor : MonoBehaviour
         //direction
         direction = (input.horizontalInput == 0) ? direction : (input.horizontalInput > 0) ? Actor.MovementDirection.RIGHT : Actor.MovementDirection.LEFT;
         spriteRenderer.flipX = direction == MovementDirection.LEFT;
+    }
+
+    public void ApplyAnimation()
+    {
+        animator.SetBool("isMoving", !(input.horizontalInput == 0));
+        animator.SetBool("isJumping", input.isJumping);
     }
 
     public Vector3 GetCurrentVelocity() => rigidbody.velocity;
