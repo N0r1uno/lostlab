@@ -39,13 +39,16 @@ public class Actor : MonoBehaviour
         if (grounded)
         {
             if (input.isJumping)
+            {
                 rigidbody.AddForce(transform.up * jumpForce);
-            rigidbody.velocity = new Vector2(input.horizontalInput * speed, rigidbody.velocity.y);
-        } else
-            rigidbody.velocity = new Vector2(Mathf.Clamp(rigidbody.velocity.x + input.horizontalInput * inAirSpeed, -speed, speed), rigidbody.velocity.y);
+            }
+            rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rigidbody.velocity.y);
+        }
+        else
+            rigidbody.velocity = new Vector2(Mathf.Clamp(rigidbody.velocity.x + Input.GetAxis("Horizontal") * inAirSpeed, -speed, speed), rigidbody.velocity.y);
 
         //direction
-        direction = (input.horizontalInput == 0) ? direction : (input.horizontalInput > 0) ? Actor.MovementDirection.RIGHT : Actor.MovementDirection.LEFT;
+        direction = (input.horizontalInput == 0) ? direction : (Input.GetAxis("Horizontal") > 0) ? Actor.MovementDirection.RIGHT : Actor.MovementDirection.LEFT;
         spriteRenderer.flipX = direction == MovementDirection.LEFT;
     }
 
@@ -64,7 +67,9 @@ public class Actor : MonoBehaviour
         RaycastHit2D[] result = new RaycastHit2D[1];
         collider.Raycast(Vector2.down, result);
         if (result[0].collider == null)
+        {
             return false;
+        }
         return collider.IsTouching(result[0].collider);
     }
 }
