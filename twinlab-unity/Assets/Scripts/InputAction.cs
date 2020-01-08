@@ -24,6 +24,11 @@ public class InputAction
         this.isFiring = isFiring;
     }
 
+    public void SetHorizontal(float horizontalInput)
+    {
+        this.horizontalInput = horizontalInput;
+    }
+
     public void Get()
     {
         Set(Input.GetAxis("Horizontal"), Input.GetKeyDown(KeyCode.Space), Input.GetKey(KeyCode.LeftControl), Input.GetKey(KeyCode.LeftShift), Input.GetKeyDown(KeyCode.Mouse0));
