@@ -18,7 +18,7 @@ public class Shrok : Actor
     {
         CalculateInput();
         ApplyMovement();
-        //ApplyAnimation();
+        ApplyAnimation();
     }
 
     public void CalculateInput()
@@ -26,7 +26,7 @@ public class Shrok : Actor
         //TODO
         if (Vector2.Distance(transform.position, target.transform.position) <= range)
         {
-            Debug.Log(target.transform.position.x - transform.position.x);
+            //Debug.Log(target.transform.position.x - transform.position.x);
             if (target.transform.position.x - transform.position.x > 0)
                 input.SetHorizontal(1);
             else
