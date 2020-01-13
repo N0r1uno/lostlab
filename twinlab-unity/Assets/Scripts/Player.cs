@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Player : Actor
 {
-<<<<<<< HEAD
     public float maxHealth;
     private float currentHealth;
-=======
     private Interactable interactable;
 
->>>>>>> de7e972637488cf46bc0d48fd109d9eda062f94e
     void Update()
     {
         input.Get();
@@ -20,7 +17,6 @@ public class Player : Actor
     }
 
     override
-<<<<<<< HEAD
     public bool IsPlayer => true; 
 
     public float GetHealth()
@@ -40,10 +36,7 @@ public class Player : Actor
     public void Die()
     {
 
-=======
-    public bool IsPlayer => true;
-
-
+    }
     public void ApplyInteraction()
     {
         if (input.isInteracting && interactable != null)
@@ -68,6 +61,5 @@ public class Player : Actor
             Debug.Log("Left Interactable Trigger");
             interactable = null;
         }
->>>>>>> de7e972637488cf46bc0d48fd109d9eda062f94e
     }
 }
