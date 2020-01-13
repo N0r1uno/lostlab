@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckPoint : Interactable
 {
-    public SpriteRenderer interactionSprite;
+    
     void Start()
     {
         ShowMessage(false);
@@ -17,6 +17,6 @@ public class CheckPoint : Interactable
 
     override public void ShowMessage(bool val)
     {
-        interactionSprite.enabled = val;
+        
     }
 }
