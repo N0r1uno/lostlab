@@ -14,6 +14,9 @@ public class Actor : MonoBehaviour
         RIGHT,
     }
     [Header("Actor Stats")]
+
+    public float maxHealth;
+    private float currentHealth;
     public MovementDirection direction;
     public float speed;
     public float inAirSpeed;
@@ -69,14 +72,35 @@ public class Actor : MonoBehaviour
 
     virtual public bool IsPlayer => false;
 
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+        if (currentHealth < 0.1)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+
+    }
+
     public bool IsGrounded()
     {
-        RaycastHit2D[] result = new RaycastHit2D[1];
+        RaycastHit2D[] result = new RaycastHit2D[2];
         collider.Raycast(Vector2.down, result);
+        if (result[0].collider.isTrigger)
+            result[0] = result[1];
+
         if (result[0].collider == null)
-        {
             return false;
-        }
+
         return collider.IsTouching(result[0].collider);
     }
 }
