@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : Actor
 {
-
+    public float maxHealth;
+    private float currentHealth;
     void Update()
     {
         input.Get();
@@ -14,4 +15,23 @@ public class Player : Actor
 
     override
     public bool IsPlayer => true; 
+
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+        if(currentHealth < 0.1)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+
+    }
 }
