@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
         initial = camera.transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 dest = new Vector3(player.transform.position.x, player.transform.position.y, 0) + initial;
         camera.transform.position = Vector3.MoveTowards(camera.transform.position, dest, Vector3.Distance(camera.transform.position, dest)*smoothness*Time.deltaTime); 
