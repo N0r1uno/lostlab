@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class UserInterface : MonoBehaviour
 {
     public Slider healthSlider;
-    public Image tutorial;
 
-    public static UserInterface instance;
+    static UserInterface instance;
 
     void Start()
     {
@@ -19,4 +18,6 @@ public class UserInterface : MonoBehaviour
     {
         instance.healthSlider.value = value;
     }
+
+
 }

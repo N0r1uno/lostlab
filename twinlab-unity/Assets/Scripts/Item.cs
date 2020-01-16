@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public Collider2D collider;
+
+
+    public new Collider2D collider;
     private bool thrown;
     private float time = 0.1f;
     public void Throw()
@@ -23,6 +25,5 @@ public class Item : MonoBehaviour
                 thrown = false;
             }
         }
-        
     }
 }
