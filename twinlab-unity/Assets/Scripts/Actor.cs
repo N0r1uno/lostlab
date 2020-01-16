@@ -64,8 +64,11 @@ public class Actor : MonoBehaviour
 
     public void ApplyAnimation()
     {
-        animator.SetBool("isMoving", !(input.horizontalInput == 0));
-        animator.SetBool("isJumping", input.isJumping);
+        if (animator.runtimeAnimatorController != null)
+        {
+            animator.SetBool("isMoving", !(input.horizontalInput == 0));
+            animator.SetBool("isJumping", input.isJumping);
+        }
     }
 
     public Vector3 GetCurrentVelocity() => rigidbody.velocity;
@@ -94,13 +97,19 @@ public class Actor : MonoBehaviour
     public bool IsGrounded()
     {
         RaycastHit2D[] result = new RaycastHit2D[2];
-        collider.Raycast(Vector2.down, result);
-        if (result[0].collider.isTrigger)
-            result[0] = result[1];
+        collider.Raycast(Vector2.down, result, collider.bounds.extents.y + 0.05f);
+        Debug.DrawRay(collider.transform.position, Vector2.down);
+        if (result[0] != null && result[0].collider != null)
+        {
+            if (result[0].collider.isTrigger)
+                result[0] = result[1];
 
-        if (result[0].collider == null)
-            return false;
-
-        return collider.IsTouching(result[0].collider);
+            if (result[0].collider == null)
+            {
+                return false;
+            }
+            return collider.IsTouching(result[0].collider);
+        }
+        return false;
     }
 }
