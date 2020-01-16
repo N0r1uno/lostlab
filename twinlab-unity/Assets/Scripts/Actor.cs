@@ -91,7 +91,7 @@ public class Actor : MonoBehaviour
 
     public void Die()
     {
-
+        Debug.Log(gameObject.name + " died");
     }
 
     public bool IsGrounded()
