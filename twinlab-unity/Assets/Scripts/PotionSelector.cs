@@ -6,7 +6,7 @@ using System;
 
 public class PotionSelector : MonoBehaviour
 {
-    public PotionElement currentSelection;
+    private PotionElement selectedElement, leftElement, rightElement;
 
     [Header("UI Element")]
     public Image selected;
@@ -22,7 +22,12 @@ public class PotionSelector : MonoBehaviour
     {
         if (selected == null || left == null || right == null || count == null)
             Debug.LogError("Potion Selector UI Elements not assigned!");
-        currentSelection = potions[0];
+
+        selectedElement = potions[0];
+        leftElement = GetLeftNeighbourOf(selectedElement);
+        rightElement = GetRightNeighbourOf(selectedElement);
+        AssignSprites();
+
         instance = this;
     }
 
@@ -31,35 +36,55 @@ public class PotionSelector : MonoBehaviour
         float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheel != 0f)
             if (scrollWheel > 0f)
-                scrollRight();
+                ScrollRight();
             else
-                scrollLeft();
+                ScrollLeft();
     }
 
-    public static Potion.Type getSelectedPotionType()
+    public static Potion.Type GetSelectedPotionType()
     {
-        return instance.currentSelection.type;
+        return instance.selectedElement.type;
     }
 
-    public static void scrollRight()
+    private void AssignSprites()
+    {
+        left.sprite = leftElement.sprite;
+        selected.sprite = selectedElement.sprite;
+        right.sprite = rightElement.sprite;
+    }
+
+    private PotionElement GetRightNeighbourOf(PotionElement element)
+    {
+        int pos = potions.IndexOf(element);
+        if (pos + 1 > potions.Count - 1)
+            return potions[0];
+        else return potions[pos + 1];
+    }
+
+    private PotionElement GetLeftNeighbourOf(PotionElement element)
+    {
+        int pos = potions.IndexOf(element);
+        if(pos == 0)
+            return potions[potions.Count - 1];
+        else
+            return potions[pos - 1];
+    }
+
+    public void ScrollRight()
     {
         Debug.Log("Scroll right");
-        int i = instance.potions.IndexOf(instance.currentSelection);
-        if (i + 1 > instance.potions.Count - 1) //richtig so?
-            instance.currentSelection = instance.potions[0];
-        else
-            instance.currentSelection = instance.potions[i + 1];
-        instance.selected.sprite = instance.currentSelection.sprite;
+        rightElement = selectedElement;
+        selectedElement = leftElement;
+        leftElement = GetLeftNeighbourOf(leftElement);
+        AssignSprites();
     }
-    public static void scrollLeft()
+    public void ScrollLeft()
     {
         Debug.Log("Scroll left");
-        int i = instance.potions.IndexOf(instance.currentSelection);
-        if (i == 0)
-            instance.currentSelection = instance.potions[instance.potions.Count-1];
-        else
-            instance.currentSelection = instance.potions[i - 1];
-        instance.selected.sprite = instance.currentSelection.sprite;
+        leftElement = selectedElement;
+        selectedElement = rightElement;
+        rightElement = GetRightNeighbourOf(rightElement);
+        AssignSprites();
     }
 
     [Serializable]

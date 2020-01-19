@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8814178474695032058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.227, y: 0.545, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: 0.165, y: 0.32, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 8814178475650394188}
   m_RootOrder: 0
@@ -70,8 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8036281739366442163, guid: e947f7778b84e65499f7894a264d8d5f,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6febf35e22c5c0e4db294e0ebb36eb33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +98,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8814178475650394188
 Transform:
@@ -208,7 +207,7 @@ MonoBehaviour:
   interacted:
     m_PersistentCalls:
       m_Calls: []
-  interactionSprite: {fileID: 0}
+  interactionSprite: {fileID: 8814178474695032060}
   deactivatedCheckpoint: {fileID: 21300000, guid: fd7fe122364ea89498b38a90326e1903,
     type: 3}
   activatedCheckpoint: {fileID: 21300000, guid: 9653899d36125364bb1482e641cb8558,
@@ -229,7 +228,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8814178476378629380
 Transform:
@@ -239,7 +238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8814178476378629379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.264, y: -0.076, z: -0.43}
+  m_LocalPosition: {x: 0.225, y: -0.075, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8814178475650394188}

@@ -29,12 +29,17 @@ public class CheckPoint : Interactable
             active = true;
             renderer.sprite = activatedCheckpoint;
             screenLight.enabled = true;
+            interactionSprite.enabled = false;
         }
             
     }
 
     override public void ShowMessage(bool val)
     {
-        
+        //Debug.Log("Showing Interactable Message for " + this.gameObject.name);
+        if (interactionSprite != null && !active)
+        {
+            interactionSprite.enabled = val;
+        }
     }
 }
