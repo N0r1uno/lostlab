@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4a1b4c1e1c2f6e448b9955da3fbd2d5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5110,23 +5110,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
         type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
+        type: 3}
       propertyPath: SizeModule.enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
         type: 3}
-      propertyPath: SizeModule.separateAxes
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
-        type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
-        type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
         type: 3}
@@ -5155,6 +5150,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
         type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
+        type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inWeight
       value: 0
       objectReference: {fileID: 0}
@@ -5162,16 +5162,6 @@ PrefabInstance:
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outWeight
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
-        type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 398902793073267980, guid: b7d94410afa861d4898ae3968c9389c5,
-        type: 3}
-      propertyPath: moveWithTransform
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 398902793073267981, guid: b7d94410afa861d4898ae3968c9389c5,
         type: 3}
