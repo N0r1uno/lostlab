@@ -89,9 +89,10 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Debug.Log(gameObject.name + " died");
+        Destroy(this.gameObject);
     }
 
     public bool IsGrounded()

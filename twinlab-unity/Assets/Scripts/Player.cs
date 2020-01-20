@@ -36,6 +36,13 @@ public class Player : Actor
         }
     }
 
+    public override void Die()
+    {
+        //reset data
+        Debug.Log("Player died");
+        this.transform.position = CheckPointManager.GetCheckPointPos();
+    }
+
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.GetComponent<Interactable>() != null)

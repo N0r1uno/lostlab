@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [Header("Items")]
-    //hardgecodet
-    public int freezePotion;
+    [Header("Inventory Elements")]
+    public List<InventoryElement> inventoryElements;
 
     static Inventory instance;
     void Start()
@@ -14,4 +13,9 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
+    public struct InventoryElement
+    {
+        public Sprite sprite;
+        public int count;
+    }
 }

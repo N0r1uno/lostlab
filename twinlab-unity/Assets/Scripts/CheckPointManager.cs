@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class CheckPointManager : MonoBehaviour
 {
-    public static Vector3 point;
+    public CheckPoint first;
+    private static Vector3 point;
+
+    public void Start()
+    {
+        SetCheckPoint(first);
+    }
 
     public static void SetCheckPoint(CheckPoint checkpoint)
     {
