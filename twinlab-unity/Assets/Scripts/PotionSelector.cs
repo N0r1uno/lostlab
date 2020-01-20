@@ -6,28 +6,26 @@ using System;
 
 public class PotionSelector : MonoBehaviour
 {
-    private PotionElement selectedElement, leftElement, rightElement;
+    private PotionElement selectedElement;
 
-    [Header("UI Element")]
-    public Image selected;
-    public Image left;
-    public Image right;
-    public Text count;
-
-    [Header("Potion Sprites")]
+    [Header("Potion Elements")]
     public List<PotionElement> potions;
-
+    public Vector3 initialScale = Vector3.one * 0.8f;
+    public Vector3 selectedScale = Vector3.one;
     static PotionSelector instance;
     void Start()
     {
-        if (selected == null || left == null || right == null || count == null)
-            Debug.LogError("Potion Selector UI Elements not assigned!");
+        if (potions.Count == 0)
+            Debug.LogError("Potion Selector Elements not assigned!");
 
+        //setup
+        foreach (PotionElement potion in potions)
+        {
+            potion.image.sprite = potion.sprite;
+            potion.image.transform.localScale = initialScale;
+        }
         selectedElement = potions[0];
-        leftElement = GetLeftNeighbourOf(selectedElement);
-        rightElement = GetRightNeighbourOf(selectedElement);
-        AssignSprites();
-
+        selectedElement.image.transform.localScale = selectedScale;
         instance = this;
     }
 
@@ -44,13 +42,6 @@ public class PotionSelector : MonoBehaviour
     public static Potion.Type GetSelectedPotionType()
     {
         return instance.selectedElement.type;
-    }
-
-    private void AssignSprites()
-    {
-        left.sprite = leftElement.sprite;
-        selected.sprite = selectedElement.sprite;
-        right.sprite = rightElement.sprite;
     }
 
     private PotionElement GetRightNeighbourOf(PotionElement element)
@@ -73,18 +64,16 @@ public class PotionSelector : MonoBehaviour
     public void ScrollRight()
     {
         Debug.Log("Scroll right");
-        rightElement = selectedElement;
-        selectedElement = leftElement;
-        leftElement = GetLeftNeighbourOf(leftElement);
-        AssignSprites();
+        selectedElement.image.transform.localScale = initialScale;
+        selectedElement = GetRightNeighbourOf(selectedElement);
+        selectedElement.image.transform.localScale = selectedScale;
     }
     public void ScrollLeft()
     {
         Debug.Log("Scroll left");
-        leftElement = selectedElement;
-        selectedElement = rightElement;
-        rightElement = GetRightNeighbourOf(rightElement);
-        AssignSprites();
+        selectedElement.image.transform.localScale = initialScale;
+        selectedElement = GetLeftNeighbourOf(selectedElement);
+        selectedElement.image.transform.localScale = selectedScale;
     }
 
     [Serializable]
@@ -92,5 +81,7 @@ public class PotionSelector : MonoBehaviour
     {
         public Potion.Type type;
         public Sprite sprite;
+        public Image image;
+        public Text count;
     }
 }

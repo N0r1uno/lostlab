@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 366600444}
   - component: {fileID: 366600442}
   - component: {fileID: 366600441}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 793757978}
   - component: {fileID: 793757977}
   - component: {fileID: 793757976}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PotionExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3917,7 +3917,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 1335
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4953,7 +4953,7 @@ GameObject:
   - component: {fileID: 3618817635422693195}
   - component: {fileID: 3618817635422693207}
   - component: {fileID: 3618817635422693192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5227,6 +5227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 398902793073267983, guid: b7d94410afa861d4898ae3968c9389c5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 398902793073267983, guid: b7d94410afa861d4898ae3968c9389c5,
         type: 3}
