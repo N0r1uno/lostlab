@@ -12,15 +12,19 @@ public class PotionSelector : MonoBehaviour
     public List<PotionElement> potions;
     public Vector3 initialScale = Vector3.one * 0.8f;
     public Vector3 selectedScale = Vector3.one;
+
+    Hashtable mappedPotions;
     static PotionSelector instance;
     void Start()
     {
         if (potions.Count == 0)
             Debug.LogError("Potion Selector Elements not assigned!");
 
+        mappedPotions = new Hashtable();
         //setup
         foreach (PotionElement potion in potions)
         {
+            mappedPotions.Add(potion.type, potion);
             potion.image.sprite = potion.sprite;
             potion.image.transform.localScale = initialScale;
         }
@@ -29,22 +33,27 @@ public class PotionSelector : MonoBehaviour
         instance = this;
     }
 
-    void Update()
-    {
-        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
-        if (scrollWheel != 0f)
-            if (scrollWheel > 0f)
-                ScrollRight();
-            else
-                ScrollLeft();
-    }
-
     public static Potion.Type GetSelectedPotionType()
     {
         return instance.selectedElement.type;
     }
 
-    private PotionElement GetRightNeighbourOf(PotionElement element)
+    public static List<PotionElement> GetAllPotionElements()
+    {
+        return instance.potions;
+    }
+
+    public static PotionElement GetPotionElementOfType(Potion.Type t)
+    {
+        return (PotionElement) instance.mappedPotions[t];
+    }
+
+    public static PotionElement GetSelectedPotionElement()
+    {
+        return instance.selectedElement;
+    }
+
+    PotionElement GetRightNeighbourOf(PotionElement element)
     {
         int pos = potions.IndexOf(element);
         if (pos + 1 > potions.Count - 1)
@@ -52,7 +61,7 @@ public class PotionSelector : MonoBehaviour
         else return potions[pos + 1];
     }
 
-    private PotionElement GetLeftNeighbourOf(PotionElement element)
+    PotionElement GetLeftNeighbourOf(PotionElement element)
     {
         int pos = potions.IndexOf(element);
         if(pos == 0)
@@ -61,27 +70,38 @@ public class PotionSelector : MonoBehaviour
             return potions[pos - 1];
     }
 
-    public void ScrollRight()
+    public static void ScrollRight()
     {
-        Debug.Log("Scroll right");
-        selectedElement.image.transform.localScale = initialScale;
-        selectedElement = GetRightNeighbourOf(selectedElement);
-        selectedElement.image.transform.localScale = selectedScale;
+        //Debug.Log("Scroll right");
+        instance.selectedElement.image.transform.localScale = instance.initialScale;
+        instance.selectedElement = instance.GetRightNeighbourOf(instance.selectedElement);
+        instance.selectedElement.image.transform.localScale = instance.selectedScale;
     }
-    public void ScrollLeft()
+    public static void ScrollLeft()
     {
-        Debug.Log("Scroll left");
-        selectedElement.image.transform.localScale = initialScale;
-        selectedElement = GetLeftNeighbourOf(selectedElement);
-        selectedElement.image.transform.localScale = selectedScale;
+        //Debug.Log("Scroll left");
+        instance.selectedElement.image.transform.localScale = instance.initialScale;
+        instance.selectedElement = instance.GetLeftNeighbourOf(instance.selectedElement);
+        instance.selectedElement.image.transform.localScale = instance.selectedScale;
     }
 
     [Serializable]
-    public struct PotionElement
+    public class PotionElement
     {
         public Potion.Type type;
         public Sprite sprite;
         public Image image;
-        public Text count;
+        public Text text;
+        private int count = 0;
+
+        public int GetCount()
+        {
+            return count;
+        }
+        public void SetCount(int i)
+        {
+            count = i;
+            text.text = count + "x";
+        }
     }
 }

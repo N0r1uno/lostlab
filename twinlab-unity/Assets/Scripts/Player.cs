@@ -22,6 +22,12 @@ public class Player : Actor
 
     public void ApplyInteraction()
     {
+        if (input.scrollWheel != 0f)
+            if (input.scrollWheel > 0f)
+                PotionSelector.ScrollRight();
+            else
+                PotionSelector.ScrollLeft();
+
         if (input.isInteracting && interactable != null)
             interactable.Interact();
     }

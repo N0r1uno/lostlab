@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [Header("Inventory Elements")]
-    public List<InventoryElement> inventoryElements;
+    [Header("Hardgecodete Ingredients")]
+    public int plasmaCount; //??
 
     static Inventory instance;
     void Start()
@@ -13,9 +13,25 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
-    public struct InventoryElement
+    public static Sprite GetPotionSprite(Potion.Type t)
     {
-        public Sprite sprite;
-        public int count;
+        return PotionSelector.GetPotionElementOfType(t).sprite;
+    }
+
+    public static void SetCountOfPotion(Potion.Type t, int i)
+    {
+        PotionSelector.GetPotionElementOfType(t).SetCount(i);
+    }
+
+    public static void AddToCountOfPotion(Potion.Type t, int i)
+    {
+        PotionSelector.PotionElement pe = PotionSelector.GetPotionElementOfType(t);
+        pe.SetCount(pe.GetCount() + i);
+    }
+
+    public static void SubtractFromCountOfPotion(Potion.Type t, int i)
+    {
+        PotionSelector.PotionElement pe = PotionSelector.GetPotionElementOfType(t);
+        pe.SetCount(pe.GetCount() - i);
     }
 }

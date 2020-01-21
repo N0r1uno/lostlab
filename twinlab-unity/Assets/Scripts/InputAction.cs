@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputAction
 {
-    public float horizontalInput;
+    public float horizontalInput, scrollWheel;
     public bool isJumping, isCrouching, isSprinting, isFiring, isInteracting;
 
     public InputAction()
@@ -16,9 +16,10 @@ public class InputAction
         isInteracting = false;
     }
 
-    public void Set(float horizontalInput, bool isJumping, bool isCrouching, bool isSprinting, bool isFiring, bool isInteracting)
+    public void Set(float horizontalInput, float scrollWheel, bool isJumping, bool isCrouching, bool isSprinting, bool isFiring, bool isInteracting)
     {
         this.horizontalInput = horizontalInput;
+        this.scrollWheel = scrollWheel;
         this.isJumping = isJumping;
         this.isCrouching = isCrouching;
         this.isSprinting = isSprinting;
@@ -33,7 +34,7 @@ public class InputAction
 
     public void Get()
     {
-        Set(Input.GetAxis("Horizontal"), Input.GetKeyDown(KeyCode.Space), Input.GetKey(KeyCode.LeftControl), 
+        Set(Input.GetAxis("Horizontal"), Input.GetAxis("Mouse ScrollWheel"), Input.GetKeyDown(KeyCode.Space), Input.GetKey(KeyCode.LeftControl), 
             Input.GetKey(KeyCode.LeftShift), Input.GetKeyDown(KeyCode.Mouse0), Input.GetKeyDown(KeyCode.F));
     }
 

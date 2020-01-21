@@ -100,7 +100,8 @@ public class Actor : MonoBehaviour
         RaycastHit2D[] result = new RaycastHit2D[2];
         collider.Raycast(Vector2.down, result, collider.bounds.extents.y + 0.05f);
         Debug.DrawRay(collider.transform.position, Vector2.down);
-        if (result[0] != null && result[0].collider != null)
+        //"result[0] != null" richtiger moritz move xD
+        if (result != null && result[0].collider != null)
         {
             if (result[0].collider.isTrigger)
                 result[0] = result[1];

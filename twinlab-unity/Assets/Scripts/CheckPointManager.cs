@@ -7,7 +7,7 @@ public class CheckPointManager : MonoBehaviour
     public CheckPoint first;
     private static Vector3 point;
 
-    public void Start()
+    void Start()
     {
         SetCheckPoint(first);
     }
