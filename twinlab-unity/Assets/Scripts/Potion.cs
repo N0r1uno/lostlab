@@ -22,7 +22,8 @@ public class Potion : Item
     {
         collider.enabled = false;
         ps.gameObject.SetActive(true);
-        ps.loop = false;
+        ParticleSystem.MainModule m = ps.main;
+        m.loop = false;
         ps.Play();
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<SpriteRenderer>().sprite = null;
@@ -47,6 +48,7 @@ public class Potion : Item
             case Type.purple:
                 break;
         }
+        Destroy(gameObject, 2);
     }
 
     List<Actor> getAllHitActors()

@@ -9935,6 +9935,31 @@ PrefabInstance:
       propertyPath: potions.Array.data[4].text
       value: 
       objectReference: {fileID: 212315618}
+    - target: {fileID: 932717027, guid: 3c310e9ec9819d54181ea6bfc2d59998, type: 3}
+      propertyPath: potions.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 7435699336813145582, guid: f90d0acdfd37eac468594fb919853ad6,
+        type: 3}
+    - target: {fileID: 932717027, guid: 3c310e9ec9819d54181ea6bfc2d59998, type: 3}
+      propertyPath: potions.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 7435699336813145582, guid: f90d0acdfd37eac468594fb919853ad6,
+        type: 3}
+    - target: {fileID: 932717027, guid: 3c310e9ec9819d54181ea6bfc2d59998, type: 3}
+      propertyPath: potions.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 7435699336813145582, guid: f90d0acdfd37eac468594fb919853ad6,
+        type: 3}
+    - target: {fileID: 932717027, guid: 3c310e9ec9819d54181ea6bfc2d59998, type: 3}
+      propertyPath: potions.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 7435699336813145582, guid: f90d0acdfd37eac468594fb919853ad6,
+        type: 3}
+    - target: {fileID: 932717027, guid: 3c310e9ec9819d54181ea6bfc2d59998, type: 3}
+      propertyPath: potions.Array.data[4].prefab
+      value: 
+      objectReference: {fileID: 7435699336813145582, guid: f90d0acdfd37eac468594fb919853ad6,
+        type: 3}
     - target: {fileID: 2374278200319711220, guid: 3c310e9ec9819d54181ea6bfc2d59998,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -10069,30 +10094,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 366600441, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}
-      propertyPath: range
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 366600441, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}
-      propertyPath: damage
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 793757975, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 793757977, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 309071908}
-    - target: {fileID: 793757977, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 793757977, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: 0.45
-      objectReference: {fileID: 0}
     - target: {fileID: 3618817635422693205, guid: 4e991fd5997f74641937caad27f4fc86,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10152,21 +10157,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3618817635422693207, guid: 4e991fd5997f74641937caad27f4fc86,
-        type: 3}
-      propertyPath: jumpForce
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3618817635422693207, guid: 4e991fd5997f74641937caad27f4fc86,
-        type: 3}
-      propertyPath: maxHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3618817635422693207, guid: 4e991fd5997f74641937caad27f4fc86,
-        type: 3}
-      propertyPath: throwStrength
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}

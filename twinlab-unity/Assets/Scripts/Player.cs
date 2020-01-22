@@ -7,6 +7,7 @@ public class Player : Actor
     private Interactable interactable;
     public Item currentItem;
     public float throwStrength;
+    public Transform hand;
 
     void Update()
     {
@@ -46,7 +47,8 @@ public class Player : Actor
     {
         //reset data
         Debug.Log("Player died");
-        this.transform.position = CheckPointManager.GetCheckPointPos();
+        Vector3 checkPointPosition = CheckPointManager.GetCheckPointPos();
+        transform.position = new Vector3(checkPointPosition.x, checkPointPosition.y, transform.position.z);
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -71,8 +73,10 @@ public class Player : Actor
                 rb.gravityScale = 1;
                 rb.AddForce(direction * throwStrength * 500);
                 currentItem.Throw();
-                currentItem = null;
+                //richtig ghetto nur zum test
+                currentItem = Instantiate(PotionSelector.GetSelectedPotionElement().prefab , hand.position, Quaternion.identity, hand).GetComponent<Potion>();
             }
+
         }
     }
 }
