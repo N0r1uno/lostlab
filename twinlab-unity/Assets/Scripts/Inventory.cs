@@ -13,6 +13,11 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
+    public static GameObject GetPotionPrefab(Potion.Type t)
+    {
+        return PotionSelector.GetPotionElementOfType(t).prefab;
+    }
+
     public static Sprite GetPotionSprite(Potion.Type t)
     {
         return PotionSelector.GetPotionElementOfType(t).sprite;

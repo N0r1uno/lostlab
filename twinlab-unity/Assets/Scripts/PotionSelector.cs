@@ -92,6 +92,7 @@ public class PotionSelector : MonoBehaviour
         public Sprite sprite;
         public Image image;
         public Text text;
+        public GameObject prefab;
         private int count = 0;
 
         public int GetCount()
