@@ -15,10 +15,8 @@ public class Interactable : MonoBehaviour
 
     virtual public void ShowMessage(bool val)
     {
-        Debug.Log("Showing Interactable Message for " + this.gameObject.name);
+        //Debug.Log("Showing Interactable Message for " + this.gameObject.name);
         if (interactionSprite != null)
-        {
             interactionSprite.enabled = val;
-        }
     }
 }

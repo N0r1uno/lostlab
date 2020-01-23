@@ -125,5 +125,5 @@ MonoBehaviour:
   type: 0
   range: 0
   damage: 0
-  particles: {fileID: 7436440785658571686, guid: 265855f8d6ebfcf4bb2ebce9408f1b96,
+  particles: {fileID: 8968543482259625658, guid: f65d6c7abc05aff4d982453ece5c07cd,
     type: 3}

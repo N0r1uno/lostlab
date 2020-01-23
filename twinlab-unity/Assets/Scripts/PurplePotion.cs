@@ -14,5 +14,6 @@ public class PurplePotion : Potion
     public override void Effect()
     {
         Debug.Log("I dont know what the fuck i should do");
+        //chloroform?
     }
 }
