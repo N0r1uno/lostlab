@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Actor
 {
     private Interactable interactable;
-    public Item currentItem;
+    public Potion currentItem;
     public float throwStrength;
     public Transform hand;
 
@@ -61,22 +61,41 @@ public class Player : Actor
         }
     }
 
+    private void SetNewItem(GameObject prefab)
+    {
+        if (currentItem != null && !currentItem.HasBeenThrown())
+            Destroy(currentItem.gameObject);
+
+        if (prefab != null)
+        {          
+            currentItem = null;
+            currentItem = Instantiate(prefab, hand.position, Quaternion.identity, hand).GetComponent<Potion>();
+        }
+        else currentItem = null;
+    }
+
     public void UseItem()
     {
-        if (input.isFiring)
+
+        if (currentItem == null || (currentItem != null && currentItem.type != PotionSelector.GetSelectedPotionType() && !currentItem.HasBeenThrown() ))
+            if (PotionSelector.GetSelectedPotionElement().GetCount() > 0)
+                SetNewItem(PotionSelector.GetSelectedPotionElement().prefab);
+            else SetNewItem(null);
+
+
+        if (currentItem != null && !currentItem.HasBeenThrown())
         {
-            if (currentItem != null)
+            if (input.isFiring)
             {
+                Inventory.SubtractFromCountOfPotion(currentItem.type, 1);
+
                 currentItem.transform.parent = null;
                 Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - currentItem.transform.position).normalized;
                 Rigidbody2D rb = currentItem.gameObject.AddComponent<Rigidbody2D>();
                 rb.gravityScale = 1;
                 rb.AddForce(direction * throwStrength * 500);
-                currentItem.Throw();
-                //richtig ghetto nur zum test
-                currentItem = Instantiate(PotionSelector.GetSelectedPotionElement().prefab , hand.position, Quaternion.identity, hand).GetComponent<Potion>();
+                currentItem.Throw();   
             }
-
-        }
+        }           
     }
 }

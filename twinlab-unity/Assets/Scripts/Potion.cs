@@ -21,37 +21,28 @@ public class Potion : Item
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collider.enabled = false;
+        //particle system
         ps.gameObject.SetActive(true);
         ParticleSystem.MainModule m = ps.main;
         m.loop = false;
+        ps.transform.parent = null;
         ps.Play();
+        Destroy(ps.gameObject, m.duration);
+        //
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<SpriteRenderer>().sprite = null;
-        switch (type)
-        {
-
-            default:
-                break;
-            case Type.fire:
-                List<Actor> actors = getAllHitActors();
-                foreach (Actor a in actors)
-                {
-                    a.TakeDamage(damage);
-                }
-                break;
-            case Type.freeze:
-                break;
-            case Type.poison:
-                break;
-            case Type.power:
-                break;
-            case Type.purple:
-                break;
-        }
-        Destroy(gameObject, 2);
+        Effect();
+        Destroy(gameObject);
     }
 
-    List<Actor> getAllHitActors()
+    public virtual void Effect()
+    {
+        //do something
+        Debug.Log("Potion destroyed");
+        Destroy(this.gameObject);
+    }
+
+    public List<Actor> getAllHitActors()
     {
         List<Actor> allHitActors = new List<Actor>();
         Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, range);
