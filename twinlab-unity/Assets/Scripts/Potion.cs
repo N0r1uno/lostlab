@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Potion : Item
 {
-    public ParticleSystem ps;
     public enum Type
     {
         freeze,
@@ -17,41 +16,29 @@ public class Potion : Item
     public Type type;
     public float range;
     public float damage;
+    public GameObject particles;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collider.enabled = false;
-        ps.gameObject.SetActive(true);
-        ParticleSystem.MainModule m = ps.main;
-        m.loop = false;
-        ps.Play();
+        //particle system
+        ParticleSystem ps = Instantiate(particles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        Destroy(ps.gameObject, ps.main.duration);
+        //
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<SpriteRenderer>().sprite = null;
-        switch (type)
-        {
-
-            default:
-                break;
-            case Type.fire:
-                List<Actor> actors = getAllHitActors();
-                foreach (Actor a in actors)
-                {
-                    a.TakeDamage(damage);
-                }
-                break;
-            case Type.freeze:
-                break;
-            case Type.poison:
-                break;
-            case Type.power:
-                break;
-            case Type.purple:
-                break;
-        }
-        Destroy(gameObject, 2);
+        Effect();
+        Destroy(gameObject);
     }
 
-    List<Actor> getAllHitActors()
+    public virtual void Effect()
+    {
+        //do something
+        Debug.Log("Potion destroyed");
+        Destroy(this.gameObject);
+    }
+
+    public List<Actor> getAllHitActors()
     {
         List<Actor> allHitActors = new List<Actor>();
         Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, range);

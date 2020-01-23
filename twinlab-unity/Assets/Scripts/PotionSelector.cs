@@ -27,6 +27,7 @@ public class PotionSelector : MonoBehaviour
             mappedPotions.Add(potion.type, potion);
             potion.image.sprite = potion.sprite;
             potion.image.transform.localScale = initialScale;
+            potion.SetCount(1);
         }
         selectedElement = potions[0];
         selectedElement.image.transform.localScale = selectedScale;
