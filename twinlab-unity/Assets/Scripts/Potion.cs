@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Potion : Item
 {
-    public ParticleSystem ps;
     public enum Type
     {
         freeze,
@@ -17,17 +16,14 @@ public class Potion : Item
     public Type type;
     public float range;
     public float damage;
+    public GameObject particles;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collider.enabled = false;
         //particle system
-        ps.gameObject.SetActive(true);
-        ParticleSystem.MainModule m = ps.main;
-        m.loop = false;
-        ps.transform.parent = null;
-        ps.Play();
-        Destroy(ps.gameObject, m.duration);
+        ParticleSystem ps = Instantiate(particles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        Destroy(ps.gameObject, ps.main.duration);
         //
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<SpriteRenderer>().sprite = null;
