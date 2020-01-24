@@ -67,11 +67,14 @@ public class Slime : Actor
 
     public void CalculateInput()
     {
+
         //player is in range! attac
         if (Vector2.Distance(transform.position, target.transform.position) <= range)
         {
             float p = target.transform.position.x - transform.position.x;
             input.SetHorizontal(Mathf.Abs(p) > 0.2f ? (p > 0 ? 1 : -1) : 0);
+            //slime is jumping
+            input.isJumping = true;
             DealDamage();
         }
         else if (Time.time > waitUntil)
@@ -82,8 +85,14 @@ public class Slime : Actor
                 waitUntil = Time.time + Random.Range(5, 15);
                 NewRandomTarget();
                 input.SetHorizontal(0);
+                //slime is jumping
+                input.isJumping = false;
             }
-            else input.SetHorizontal(p > 0 ? 1 : -1);
+            else
+            {
+                input.SetHorizontal(p > 0 ? 1 : -1);
+                input.isJumping = true;
+            }
         }
     }
 
