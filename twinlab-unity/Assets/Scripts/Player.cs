@@ -83,8 +83,7 @@ public class Player : Actor
             else SetNewItem(null);
 
 
-        if (currentItem != null && !currentItem.HasBeenThrown())
-        {
+        if (currentItem != null && !currentItem.HasBeenThrown())        {
             if (input.isFiring)
             {
                 Inventory.SubtractFromCountOfPotion(currentItem.type, 1);

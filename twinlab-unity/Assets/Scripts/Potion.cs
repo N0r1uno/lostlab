@@ -35,7 +35,6 @@ public class Potion : Item
     {
         //do something
         Debug.Log("Potion destroyed");
-        Destroy(this.gameObject);
     }
 
     public List<Actor> getAllHitActors()
