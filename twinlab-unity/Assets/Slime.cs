@@ -52,7 +52,6 @@ public class Slime : Actor
                 Debug.Log("test");
                 RaycastHit2D[] hit = new RaycastHit2D[1];
                 collider.Raycast(target.transform.position - transform.position, hit);
-                Debug.DrawRay(transform.position, target.transform.position - transform.position);
                 if (hit[0].collider.GetComponent<Player>())
                 {
                     Debug.Log("test2");
