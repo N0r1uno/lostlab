@@ -16,7 +16,7 @@ public class Actor : MonoBehaviour
     [Header("Actor Stats")]
 
     public float maxHealth;
-    private float currentHealth;
+    public float currentHealth;
     public MovementDirection direction;
     public float speed;
     public float inAirSpeed;
@@ -41,6 +41,7 @@ public class Actor : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         input = new InputAction();
+        currentHealth = maxHealth;
     }
 
     public void ApplyMovement()
@@ -80,10 +81,10 @@ public class Actor : MonoBehaviour
         return currentHealth;
     }
 
-    public void TakeDamage(float dmg)
+    virtual public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
-        if (currentHealth < 0.1)
+        if (currentHealth <= 0)
         {
             Die();
         }
