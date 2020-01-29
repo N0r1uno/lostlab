@@ -9,7 +9,7 @@ public class Slime : Actor
     public float attackRange;
     public float damage;
     public float cooldown;
-    public Collider2D collider;
+    public new Collider2D collider;
     public ParticleSystem ps;
     private float currentCooldown;
     private Player target;
