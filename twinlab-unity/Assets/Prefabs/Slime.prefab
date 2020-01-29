@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3189573040088190082}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -13.529999, y: -1.4399999, z: -68.109375}
+  m_LocalPosition: {x: -0.541, y: 0, z: -68.109375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7335794515891847343}
@@ -4777,6 +4777,7 @@ GameObject:
   - component: {fileID: 7335794515891847340}
   - component: {fileID: 7335794515891847329}
   - component: {fileID: 3189573039192880266}
+  - component: {fileID: -3578784275748115150}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -4917,14 +4918,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee131323555ea249870ec7f98ec1838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 234
+  maxHealth: 100
+  currentHealth: 0
+  regeration: 0
   direction: 0
   speed: 1
   inAirSpeed: 0.2
   jumpForce: 50
   range: 4
-  attackRange: 3
-  damage: 1
+  attackRange: 2.5
+  damage: 0.2
   cooldown: 2
   collider: {fileID: 7335794515891847329}
   ps: {fileID: 3189573040088190080}
+--- !u!114 &-3578784275748115150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335794515891847330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fdd04f6f4c12874ba21866c5a87fb31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezed: {fileID: 8036281739366442163, guid: e947f7778b84e65499f7894a264d8d5f, type: 3}

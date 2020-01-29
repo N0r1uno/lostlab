@@ -37,7 +37,12 @@ public class Potion : Item
         Debug.Log("Potion destroyed");
     }
 
-    public List<Actor> getAllHitActors()
+    public float GetDistanceMultiplier(Actor actor)
+    {
+        return Mathf.Clamp(1f - (Vector3.Distance(actor.transform.position, transform.position) / range), 0.1f, 1f);
+    }
+
+    public List<Actor> GetAllHitActors()
     {
         List<Actor> allHitActors = new List<Actor>();
         Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, range);

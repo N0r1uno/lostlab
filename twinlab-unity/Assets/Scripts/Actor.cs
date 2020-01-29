@@ -16,7 +16,8 @@ public class Actor : MonoBehaviour
     [Header("Actor Stats")]
 
     public float maxHealth;
-    private float currentHealth;
+    public float currentHealth;
+    public float regeration;
     public MovementDirection direction;
     public float speed;
     public float inAirSpeed;
@@ -41,6 +42,7 @@ public class Actor : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         input = new InputAction();
+        currentHealth = maxHealth;
     }
 
     public void ApplyMovement()
@@ -80,18 +82,23 @@ public class Actor : MonoBehaviour
         return currentHealth;
     }
 
-    public void TakeDamage(float dmg)
+    virtual public void TakeDamage(float dmg)
     {
+        Debug.Log("TakeDamage " + currentHealth + " -"+dmg);
         currentHealth -= dmg;
-        if (currentHealth < 0.1)
-        {
-            Die();
-        }
+        if (currentHealth <= 0) Die();
+    }
+
+    virtual public void Regenerate()
+    {
+        if (currentHealth != maxHealth)
+            currentHealth = Mathf.Clamp( currentHealth + regeration * Time.deltaTime, 0f, maxHealth);
     }
 
     public virtual void Die()
     {
         Debug.Log(gameObject.name + " died");
+        //drop?
         Destroy(this.gameObject);
     }
 
