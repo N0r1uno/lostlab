@@ -9,12 +9,6 @@ public class Player : Actor
     public float throwStrength;
     public Transform hand;
 
-    void Start()
-    {
-        Initialize();
-        HealthSlider.SetValue(1f);
-    }
-
     void Update()
     {
         input.Get();
@@ -22,6 +16,7 @@ public class Player : Actor
         ApplyInteraction();
         ApplyAnimation();
         UseItem();
+        Regenerate();
     }
 
     override
@@ -52,15 +47,25 @@ public class Player : Actor
     public override void TakeDamage(float dmg)
     {
         base.TakeDamage(dmg);
-        HealthSlider.SetValue(val: currentHealth/maxHealth );
+        HealthSlider.SetValue(currentHealth/maxHealth);
+    }
+
+    public override void Regenerate()
+    {
+        base.Regenerate();
+        HealthSlider.SetValue(currentHealth / maxHealth);
     }
 
     public override void Die()
     {
         //reset data
         Debug.Log("Player died");
+        Freezable f = GetComponent<Freezable>();
+        if (f != null) f.Unfreeze();
+
         Vector3 checkPointPosition = CheckPointManager.GetCheckPointPos();
         transform.position = new Vector3(checkPointPosition.x, checkPointPosition.y, transform.position.z);
+
         currentHealth = maxHealth;
         HealthSlider.SetValue(1f);
     }

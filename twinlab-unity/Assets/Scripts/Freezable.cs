@@ -30,15 +30,15 @@ public class Freezable : MonoBehaviour
     public void Freeze(float time)
     {
         original = renderer.sprite;
-        if (hasRigidbody && !hasActor)
-        {
-            rigidbody.simulated = false;
-            rigidbody.mass = 100f;
-        }
         if (hasAnimator)
             animator.enabled = false;
         if (hasActor)
             actor.enabled = false;
+        if (hasRigidbody)
+        {
+            rigidbody.velocity = Vector2.zero;
+
+        }
         renderer.sprite = freezed;
         StartCoroutine(UnfreezeCoroutine(time));
     }
@@ -52,10 +52,9 @@ public class Freezable : MonoBehaviour
     public void Unfreeze()
     {
         renderer.sprite = original;
-        if (hasRigidbody && !hasActor)
+        if (hasRigidbody)
         {
             rigidbody.simulated = true;
-            rigidbody.mass = 1f;
         }
         if (hasAnimator)
             animator.enabled = true;

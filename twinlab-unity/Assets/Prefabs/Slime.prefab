@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3189573040088190082}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -13.529999, y: -1.4399999, z: -68.109375}
+  m_LocalPosition: {x: -0.541, y: 0, z: -68.109375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7335794515891847343}
@@ -4920,6 +4920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  regeration: 0
   direction: 0
   speed: 1
   inAirSpeed: 0.2

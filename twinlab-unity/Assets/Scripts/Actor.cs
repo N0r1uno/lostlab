@@ -17,6 +17,7 @@ public class Actor : MonoBehaviour
 
     public float maxHealth;
     public float currentHealth;
+    public float regeration;
     public MovementDirection direction;
     public float speed;
     public float inAirSpeed;
@@ -83,16 +84,21 @@ public class Actor : MonoBehaviour
 
     virtual public void TakeDamage(float dmg)
     {
+        Debug.Log("TakeDamage " + currentHealth + " -"+dmg);
         currentHealth -= dmg;
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        if (currentHealth <= 0) Die();
+    }
+
+    virtual public void Regenerate()
+    {
+        if (currentHealth != maxHealth)
+            currentHealth = Mathf.Clamp( currentHealth + regeration * Time.deltaTime, 0f, maxHealth);
     }
 
     public virtual void Die()
     {
         Debug.Log(gameObject.name + " died");
+        //drop?
         Destroy(this.gameObject);
     }
 

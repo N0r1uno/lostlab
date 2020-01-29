@@ -13,11 +13,8 @@ public class FirePotion : Potion
 
     public override void Effect()
     {
-        List<Actor> actors = getAllHitActors();
+        List<Actor> actors = GetAllHitActors();
         foreach (Actor actor in actors)
-        {
-            float damageMultiplicator = 1-(Vector3.Distance(actor.transform.position, transform.position)/range);
-            actor.TakeDamage(damageMultiplicator * damage);
-        }
+            actor.TakeDamage(GetDistanceMultiplier(actor) * damage);
     }
 }

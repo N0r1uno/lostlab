@@ -13,11 +13,12 @@ public class HealthSlider : MonoBehaviour
     {
         slider = GetComponent<Slider>();
         instance = this;
+        slider.value = 1f;
     }
 
     public static void SetValue(float val)
     {
-        Debug.Log("HealthSlider value " + val);
+        //Debug.Log("HealthSlider value " + val);
         instance.slider.value = val;
     }
 }

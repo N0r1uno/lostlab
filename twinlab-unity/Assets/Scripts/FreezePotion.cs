@@ -15,15 +15,15 @@ public class FreezePotion : Potion
 
     public override void Effect()
     {
-        List<Actor> actors = getAllHitActors();
+        List<Actor> actors = GetAllHitActors();
         foreach (Actor actor in actors)
         {
-            float damageMultiplicator = 1 - (Vector3.Distance(actor.transform.position, transform.position) / range);
-            actor.TakeDamage(damageMultiplicator * damage);
+            float distanceMultiplicator = GetDistanceMultiplier(actor);
+            actor.TakeDamage(distanceMultiplicator * damage);
 
             Freezable f = actor.GetComponent<Freezable>();
             if (f != null)
-                f.Freeze(damageMultiplicator * maxFreezeTime);
+                f.Freeze(distanceMultiplicator * maxFreezeTime);
         }
             
         Debug.Log("Freeze stuff");

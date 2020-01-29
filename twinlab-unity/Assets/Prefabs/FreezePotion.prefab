@@ -124,7 +124,7 @@ MonoBehaviour:
   collider: {fileID: 1664485370695122403}
   type: 0
   range: 4
-  damage: 2
+  damage: 10
   particles: {fileID: 8968543482259625658, guid: f65d6c7abc05aff4d982453ece5c07cd,
     type: 3}
   maxFreezeTime: 10
