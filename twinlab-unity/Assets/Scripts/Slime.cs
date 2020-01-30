@@ -46,14 +46,17 @@ public class Slime : Actor
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (cooldown <= 0)
+        if (collision.gameObject.GetComponent<Player>() != null)
         {
-            cooldown = attackCooldown;
-            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
-        }
-        else
-        {
-            cooldown -= Time.deltaTime;
+            if (cooldown <= 0)
+            {
+                cooldown = attackCooldown;
+                collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+            }
+            else
+            {
+                cooldown -= Time.deltaTime;
+            }
         }
     }
 
