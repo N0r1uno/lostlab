@@ -19,7 +19,7 @@ public class fountain : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
-            float finalForce = force / collision.Distance(gameObject.GetComponent<Collider2D>()).distance;
+            float finalForce = force / (collision.Distance(gameObject.GetComponent<Collider2D>()).distance * 10);
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * force);
         }
     }
