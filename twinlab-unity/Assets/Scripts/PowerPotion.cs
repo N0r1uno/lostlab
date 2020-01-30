@@ -13,6 +13,18 @@ public class PowerPotion : Potion
 
     public override void Effect()
     {
-        Debug.Log("Power stuff");
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, range);
+        for (int i = 0; i < collisions.Length; i++)
+        {
+            Cable cable = collisions[i].GetComponent<Cable>();
+            if (cable != null)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, collisions[i].transform.position - transform.position);
+                if (hit.collider.gameObject.Equals(collisions[i].gameObject))
+                {
+                    cable.GiveSignal();
+                }
+            }
+        }
     }
 }
