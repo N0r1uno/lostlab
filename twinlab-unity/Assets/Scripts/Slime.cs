@@ -6,20 +6,18 @@ public class Slime : Actor
 {
     [Header("Slime")]
     public float range;
-    public float attackRange;
-    public float damage;
-    public float cooldown;
     public new Collider2D collider;
-    public ParticleSystem ps;
-    private float currentCooldown;
     private Player target;
 
     private Vector3 origin;
     private Vector3 randomTarget;
     private float waitUntil;
+
+    public float attackCooldown;
+    private float cooldown;
+    public float damage;
     void Start()
     {
-        ps.Stop();
         Initialize();
         target = FindObjectOfType<Player>();
         waitUntil = Time.time + Random.Range(0, 5);
@@ -29,38 +27,33 @@ public class Slime : Actor
 
     void Update()
     {
-        if(currentCooldown > 0)
-        {
-            currentCooldown -= Time.deltaTime;
-        }
         CalculateInput();
         ApplyMovement();
         ApplyAnimation();
-        if(target != null)
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Player>() != null)
         {
-            ps.transform.LookAt(target.transform);
+            if (cooldown <= 0)
+            {
+                cooldown = attackCooldown;
+                collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+            }
         }
     }
 
-    public void DealDamage()
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (currentCooldown <= 0)
+        if (cooldown <= 0)
         {
-            // Is in attackRange
-            if (Vector2.Distance(target.transform.position, transform.position) <= attackRange)
-            {
-                Debug.Log("test");
-                RaycastHit2D[] hit = new RaycastHit2D[1];
-                collider.Raycast(target.transform.position - transform.position, hit);
-                if (hit[0].collider.GetComponent<Player>())
-                {
-                    Debug.Log("test2");
-                    currentCooldown = 0;
-                    target.TakeDamage(damage);
-                    ps.time = 0;
-                    ps.Play();
-                }
-            }
+            cooldown = attackCooldown;
+            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+        }
+        else
+        {
+            cooldown -= Time.deltaTime;
         }
     }
 
@@ -74,7 +67,6 @@ public class Slime : Actor
             input.SetHorizontal(Mathf.Abs(p) > 0.2f ? (p > 0 ? 1 : -1) : 0);
             //slime is jumping
             input.isJumping = true;
-            DealDamage();
         }
         else if (Time.time > waitUntil)
         {

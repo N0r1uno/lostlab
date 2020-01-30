@@ -8,9 +8,13 @@ public class Shrok : Actor
     public float range;
     private Player target;
 
+    
     private Vector3 origin;
     private Vector3 randomTarget;
     private float waitUntil;
+    public float attackCooldown;
+    private float cooldown;
+    public float damage;
     void Start()
     {
         Initialize();
@@ -27,11 +31,30 @@ public class Shrok : Actor
         ApplyAnimation();
     }
 
-    public void DealDamage()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if (collision.gameObject.GetComponent<Player>() != null)
+        {
+            if (cooldown <= 0)
+            {
+                cooldown = attackCooldown;
+                collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+            }
+        }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (cooldown <= 0)
+        {
+            cooldown = attackCooldown;
+            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+        }
+        else
+        {
+            cooldown -= Time.deltaTime;
+        }
+    }
     public void CalculateInput()
     {
         //player is in range! attac
