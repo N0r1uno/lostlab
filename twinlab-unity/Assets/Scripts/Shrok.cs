@@ -33,28 +33,34 @@ public class Shrok : Actor
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>() != null)
+        if (gameObject.GetComponent<Freezable>().freezed)
         {
-            if (cooldown <= 0)
+            if (collision.gameObject.GetComponent<Player>() != null)
             {
-                cooldown = attackCooldown;
-                collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+                if (cooldown <= 0)
+                {
+                    cooldown = attackCooldown;
+                    collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+                }
             }
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>() != null)
+        if (gameObject.GetComponent<Freezable>().freezed)
         {
-            if (cooldown <= 0)
+            if (collision.gameObject.GetComponent<Player>() != null)
             {
-                cooldown = attackCooldown;
-                collision.gameObject.GetComponent<Player>().TakeDamage(damage);
-            }
-            else
-            {
-                cooldown -= Time.deltaTime;
+                if (cooldown <= 0)
+                {
+                    cooldown = attackCooldown;
+                    collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+                }
+                else
+                {
+                    cooldown -= Time.deltaTime;
+                }
             }
         }
     }

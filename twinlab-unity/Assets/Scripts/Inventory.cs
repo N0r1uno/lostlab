@@ -23,6 +23,12 @@ public class Inventory : MonoBehaviour
         return PotionSelector.GetPotionElementOfType(t).sprite;
     }
 
+    public static int GetPotionAmount(Potion.Type t)
+    {
+        PotionSelector.PotionElement pe = PotionSelector.GetPotionElementOfType(t);
+        return pe.GetCount();
+    }
+
     public static void SetCountOfPotion(Potion.Type t, int i)
     {
         PotionSelector.GetPotionElementOfType(t).SetCount(i);

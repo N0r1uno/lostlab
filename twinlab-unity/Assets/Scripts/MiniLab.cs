@@ -29,11 +29,10 @@ public class MiniLab : Interactable
         if (!empty)
         {
             foreach (MiniLabPotionElement mlpe in potions)
-                Inventory.AddToCountOfPotion(mlpe.type, mlpe.count);
-
-            renderer.sprite = emptyMiniLab;
-            empty = true;
-            interactionSprite.enabled = false;
+                if(Inventory.GetPotionAmount(mlpe.type) < mlpe.count)
+                {
+                    Inventory.SetCountOfPotion(mlpe.type, mlpe.count);
+                }
         }
     }
 
