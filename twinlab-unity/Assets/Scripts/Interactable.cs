@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    public UnityEngine.Events.UnityEvent interacted;
+    public UnityEvent interacted;
     public SpriteRenderer interactionSprite;
 
     virtual public void Interact()

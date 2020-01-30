@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
+  regeration: 0
   direction: 0
   speed: 1.5
   inAirSpeed: 0
@@ -173,4 +174,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fdd04f6f4c12874ba21866c5a87fb31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezed: {fileID: 21300000, guid: 91cbdee820ce9b04ab2cc3a4e81c1913, type: 3}
+  freezed: {fileID: 21300000, guid: a7b58a5ea7b643d4c83d348c9c665b69, type: 3}

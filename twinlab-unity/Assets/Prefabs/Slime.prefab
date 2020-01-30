@@ -4943,4 +4943,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fdd04f6f4c12874ba21866c5a87fb31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezed: {fileID: 8036281739366442163, guid: e947f7778b84e65499f7894a264d8d5f, type: 3}
+  freezed: {fileID: 21300000, guid: 169e32729d013634c94dd3e805794f08, type: 3}
