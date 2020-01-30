@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   currentHealth: 0
-  regeration: 0.1
+  regeration: 1
   direction: 0
   speed: 3
   inAirSpeed: 0.2
