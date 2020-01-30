@@ -124,6 +124,6 @@ MonoBehaviour:
   collider: {fileID: 3472072948957732119}
   type: 0
   range: 2
-  damage: 4
+  damage: 40
   particles: {fileID: 3339573282635088737, guid: 27aef2216814f3e429fefd4ef11ba5db,
     type: 3}

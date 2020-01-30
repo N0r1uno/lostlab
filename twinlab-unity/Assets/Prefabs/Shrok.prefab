@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c317a633029d3c4881428aa2f582478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 100
   currentHealth: 0
   regeration: 0
   direction: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   jumpForce: 0
   range: 5
   attackCooldown: 0.5
-  damage: 8
+  damage: 50
 --- !u!95 &5300272739234296867
 Animator:
   serializedVersion: 3
