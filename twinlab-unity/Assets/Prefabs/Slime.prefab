@@ -173,8 +173,8 @@ MonoBehaviour:
   direction: 0
   speed: 1
   inAirSpeed: 0.5
-  jumpForce: 80
-  range: 2.5
+  jumpForce: 16
+  range: 6
   collider: {fileID: 7335794515891847329}
   attackCooldown: 0.7
   damage: 20

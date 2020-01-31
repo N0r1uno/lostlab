@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 3697650578623843777}
   type: 4
-  range: 2
+  range: 1
   damage: 20
   particles: {fileID: 7436440785658571686, guid: 265855f8d6ebfcf4bb2ebce9408f1b96,
     type: 3}

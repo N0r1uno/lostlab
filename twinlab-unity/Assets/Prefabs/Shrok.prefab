@@ -126,9 +126,9 @@ MonoBehaviour:
   speed: 1.5
   inAirSpeed: 0
   jumpForce: 0
-  range: 5
+  range: 4
   attackCooldown: 0.5
-  damage: 50
+  damage: 80
 --- !u!95 &5300272739234296867
 Animator:
   serializedVersion: 3
