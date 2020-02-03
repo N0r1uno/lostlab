@@ -84,9 +84,11 @@ public class Actor : MonoBehaviour
 
     virtual public void TakeDamage(float dmg)
     {
-        Debug.Log("TakeDamage " + currentHealth + " -"+dmg);
-        currentHealth -= dmg;
-        if (currentHealth <= 0) Die();
+        if (GetComponent<Freezable>().freezed)
+        {
+            currentHealth -= dmg;
+            if (currentHealth <= 0) Die();
+        }
     }
 
     virtual public void Regenerate()
