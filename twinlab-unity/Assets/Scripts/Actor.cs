@@ -85,8 +85,16 @@ public class Actor : MonoBehaviour
     virtual public void TakeDamage(float dmg)
     {
         Debug.Log("TakeDamage " + currentHealth + " -"+dmg);
+        StartCoroutine(ShowDamageCoroutine());
         currentHealth -= dmg;
         if (currentHealth <= 0) Die();
+    }
+
+    private IEnumerator ShowDamageCoroutine()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
     }
 
     virtual public void Regenerate()
