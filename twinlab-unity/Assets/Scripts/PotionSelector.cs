@@ -9,6 +9,7 @@ public class PotionSelector : MonoBehaviour
     private PotionElement selectedElement;
 
     [Header("Potion Elements")]
+    public Sprite emptyPotion;
     public List<PotionElement> potions;
     public Vector3 initialScale = Vector3.one * 0.8f;
     public Vector3 selectedScale = Vector3.one;
@@ -25,9 +26,9 @@ public class PotionSelector : MonoBehaviour
         foreach (PotionElement potion in potions)
         {
             mappedPotions.Add(potion.type, potion);
-            potion.image.sprite = potion.sprite;
+            potion.SetEmpty(emptyPotion);
+            potion.SetCount(0);
             potion.image.transform.localScale = initialScale;
-            potion.SetCount(1);
         }
         selectedElement = potions[0];
         selectedElement.image.transform.localScale = selectedScale;
@@ -105,6 +106,12 @@ public class PotionSelector : MonoBehaviour
         public Text text;
         public GameObject prefab;
         private int count = 0;
+        private Sprite empty;
+
+        public void SetEmpty(Sprite empty)
+        {
+            this.empty = empty;
+        }
 
         public int GetCount()
         {
@@ -114,6 +121,9 @@ public class PotionSelector : MonoBehaviour
         {
             count = i;
             text.text = count + "x";
+            if (count == 0)
+                image.sprite = empty;
+            else image.sprite = sprite;
         }
     }
 }

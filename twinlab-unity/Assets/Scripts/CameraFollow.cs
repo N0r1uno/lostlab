@@ -8,7 +8,6 @@ public class CameraFollow : MonoBehaviour
     [Range(0f, 4f)]
     public float smoothness = 1f;
 
-
     private new Camera camera;
     private Player player;
     private Vector3 initial;
