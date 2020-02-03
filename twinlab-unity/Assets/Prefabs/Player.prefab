@@ -184,11 +184,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   currentHealth: 0
-  regeration: 1
+  regeration: 5
   direction: 0
-  speed: 3
-  inAirSpeed: 0.2
-  jumpForce: 200
+  speed: 4
+  inAirSpeed: 0.6
+  jumpForce: 170
+  invertedControls: 0
   currentItem: {fileID: 0}
   throwStrength: 2
   hand: {fileID: 8991614678497505978}
