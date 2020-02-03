@@ -84,20 +84,13 @@ public class Actor : MonoBehaviour
 
     virtual public void TakeDamage(float dmg)
     {
-<<<<<<< HEAD
-        Debug.Log("TakeDamage " + currentHealth + " -"+dmg);
-        StartCoroutine(ShowDamageCoroutine());
-        currentHealth -= dmg;
-        if (currentHealth <= 0) Die();
-=======
-        Debug.Log("test22");
+        //Debug.Log("TakeDamage " + currentHealth + " -"+dmg);
         if (!GetComponent<Freezable>().isFrozen)
         {
-            Debug.Log("test");
+            StartCoroutine(ShowDamageCoroutine());
             currentHealth -= dmg;
             if (currentHealth <= 0) Die();
         }
->>>>>>> eefa9e3e035ec4d5da9c56b2c2644d695ab2d376
     }
 
     private IEnumerator ShowDamageCoroutine()
