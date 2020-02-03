@@ -68,8 +68,15 @@ public class Player : Actor
         Freezable f = GetComponent<Freezable>();
         if (f != null) f.Unfreeze();
 
+        SpawnPoint[] spawnPoints = GameObject.FindObjectsOfType<SpawnPoint>();
+        foreach (SpawnPoint point in spawnPoints)
+            point.ResetSpawn();
+
         Vector3 checkPointPosition = CheckPointManager.GetCheckPointPos();
         transform.position = new Vector3(checkPointPosition.x, checkPointPosition.y, transform.position.z);
+
+        foreach (SpawnPoint point in spawnPoints)
+            point.SpawnAll();
 
         currentHealth = maxHealth;
         HealthSlider.SetValue(1f);
