@@ -103,6 +103,18 @@ public class Actor : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
+    public void InvertControls(float time)
+    {
+        invertedControls = true;
+        StartCoroutine(ResetInvertion(time));
+    }
+
+    private IEnumerator ResetInvertion(float time)
+    {
+        yield return new WaitForSeconds(time);
+        invertedControls = false;
+    }
+
     virtual public void Regenerate()
     {
         if (currentHealth != maxHealth)
