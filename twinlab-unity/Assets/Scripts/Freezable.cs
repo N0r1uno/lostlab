@@ -13,6 +13,8 @@ public class Freezable : MonoBehaviour
     private Animator animator;
     private Actor actor;
 
+    public bool isFrozen;
+
     private bool hasAnimator = false;
     private bool hasActor = false;
     private bool hasRigidbody = false;
@@ -40,6 +42,7 @@ public class Freezable : MonoBehaviour
 
         }
         renderer.sprite = freezed;
+        isFrozen = true;
         StartCoroutine(UnfreezeCoroutine(time));
     }
 
@@ -60,5 +63,7 @@ public class Freezable : MonoBehaviour
             animator.enabled = true;
         if (hasActor)
             actor.enabled = true;
+
+        isFrozen = false;
     }
 }
