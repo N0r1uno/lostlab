@@ -132,7 +132,8 @@ public class Player : Actor
         Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - currentItem.transform.position).normalized;
         Rigidbody2D rb = currentItem.gameObject.AddComponent<Rigidbody2D>();
         rb.gravityScale = 1;
-        rb.AddForce(direction * throwStrength * 500);
+        rb.mass = currentItem.mass;
+        rb.AddForce(direction * throwStrength);
         currentItem.Throw();        
     }
 

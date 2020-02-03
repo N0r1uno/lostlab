@@ -16,6 +16,7 @@ public class Potion : Item
     public Type type;
     public float range;
     public float damage;
+    public float mass = 0.2f;
     public GameObject particles;
 
     private void OnCollisionEnter2D(Collision2D collision)
