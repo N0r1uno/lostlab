@@ -71,6 +71,16 @@ public class PotionSelector : MonoBehaviour
             return potions[pos - 1];
     }
 
+    public static void Set(int i)
+    {
+        if (i < instance.potions.Count)
+        {
+            instance.selectedElement.image.transform.localScale = instance.initialScale;
+            instance.selectedElement = instance.potions[i];
+            instance.selectedElement.image.transform.localScale = instance.selectedScale;
+        }
+    }
+
     public static void ScrollRight()
     {
         //Debug.Log("Scroll right");

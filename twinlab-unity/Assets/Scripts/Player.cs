@@ -24,11 +24,18 @@ public class Player : Actor
 
     public void ApplyInteraction()
     {
-        if (input.scrollWheel != 0f)
-            if (input.scrollWheel > 0f)
-                PotionSelector.ScrollRight();
-            else
-                PotionSelector.ScrollLeft();
+        int alphakey = input.GetAlphaKey();
+        if (alphakey >= 1 && alphakey <= 5)
+        {
+            PotionSelector.Set(alphakey - 1);
+        } else
+        {
+            if (input.scrollWheel != 0f)
+                if (input.scrollWheel > 0f)
+                    PotionSelector.ScrollLeft();
+                else
+                    PotionSelector.ScrollRight();
+        }
 
         if (input.isInteracting && interactable != null)
             interactable.Interact();
