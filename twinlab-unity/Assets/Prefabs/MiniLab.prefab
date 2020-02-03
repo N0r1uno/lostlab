@@ -181,6 +181,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionSprite: {fileID: 6797513567004688009}
+  potions: []
+  fullMiniLab: {fileID: 21300000, guid: 6dc403b0189cc8e43be4a91beaadc09e, type: 3}
+  emptyMiniLab: {fileID: 21300000, guid: 01c300365272325449426bfa90e783d4, type: 3}
 --- !u!61 &6797513568171191843
 BoxCollider2D:
   m_ObjectHideFlags: 0
