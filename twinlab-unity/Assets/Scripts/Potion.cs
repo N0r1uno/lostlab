@@ -49,10 +49,19 @@ public class Potion : Item
         for (int i = 0; i < collisions.Length; i++)
         {
             if (collisions[i].gameObject.GetComponents<Actor>().Length > 0){
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, collisions[i].transform.position - transform.position);
-                if (hit.collider.gameObject.Equals(collisions[i].gameObject))
+                RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, collisions[i].transform.position - transform.position);
+                for(int j = 0; j < hit.Length; j++)
                 {
-                    allHitActors.Add(collisions[i].GetComponent<Actor>());
+                    if(hit[j].collider.gameObject.GetComponents<Actor>().Length > 0)
+                    {
+                        if (hit[j].collider.gameObject.Equals(collisions[i].gameObject))
+                        {
+                            allHitActors.Add(collisions[i].GetComponent<Actor>());
+                        }
+                    }else if (hit[j].collider.isTrigger) { } else
+                    {
+                        break;
+                    }
                 }
             }
         }
