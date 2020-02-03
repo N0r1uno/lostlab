@@ -84,7 +84,7 @@ public class Actor : MonoBehaviour
 
     virtual public void TakeDamage(float dmg)
     {
-        if (GetComponent<Freezable>().freezed)
+        if (!GetComponent<Freezable>().freezed)
         {
             currentHealth -= dmg;
             if (currentHealth <= 0) Die();
