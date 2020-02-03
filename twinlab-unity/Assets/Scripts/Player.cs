@@ -72,6 +72,9 @@ public class Player : Actor
         foreach (SpawnPoint point in spawnPoints)
             point.ResetSpawn();
 
+        foreach (PotionSelector.PotionElement potionElement in PotionSelector.GetAllPotionElements())
+            potionElement.SetCount(0);
+
         Vector3 checkPointPosition = CheckPointManager.GetCheckPointPos();
         transform.position = new Vector3(checkPointPosition.x, checkPointPosition.y, transform.position.z);
 
