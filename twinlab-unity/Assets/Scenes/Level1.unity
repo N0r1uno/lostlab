@@ -46810,7 +46810,7 @@ GameObject:
   - component: {fileID: 309071911}
   - component: {fileID: 309071910}
   - component: {fileID: 309071909}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56323,6 +56323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618817635422693207, guid: 4e991fd5997f74641937caad27f4fc86,
+        type: 3}
+      propertyPath: lm.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}

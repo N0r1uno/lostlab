@@ -115,21 +115,16 @@ public class Actor : MonoBehaviour
 
     public bool IsGrounded()
     {
-        RaycastHit2D[] result = new RaycastHit2D[2];
-        collider.Raycast(Vector2.down, result, collider.bounds.extents.y + 0.05f);
-        Debug.DrawRay(collider.transform.position, Vector2.down);
-        //"result[0] != null" richtiger moritz move xD
-        if (result != null && result[0].collider != null)
-        {
-            if (result[0].collider.isTrigger)
-                result[0] = result[1];
+         Vector2 startPos = new Vector2(collider.bounds.center.x - collider.bounds.extents.x, collider.bounds.center.y);
+         RaycastHit2D resL = Physics2D.Raycast(startPos, Vector2.down, collider.bounds.extents.y + 0.2f, LayerMask.GetMask("jumpable"));
+        startPos = new Vector2(collider.bounds.center.x + collider.bounds.extents.x, collider.bounds.center.y);
+         RaycastHit2D resR = Physics2D.Raycast(startPos, Vector2.down, collider.bounds.extents.y + 0.2f, LayerMask.GetMask("jumpable"));
 
-            if (result[0].collider == null)
-            {
-                return false;
-            }
-            return collider.IsTouching(result[0].collider);
-        }
-        return false;
-    }
+
+         if (resR.collider != null || resL.collider != null)
+         {
+             return true;
+         }
+         return false;
+     }
 }
