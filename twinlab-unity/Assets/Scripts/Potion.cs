@@ -42,6 +42,11 @@ public class Potion : Item
         return Mathf.Clamp(1f - (Vector3.Distance(actor.transform.position, transform.position) / range), 0.1f, 1f);
     }
 
+    public float GetDistanceMultiplier(Vector2 vector)
+    {
+        return Mathf.Clamp(1f - (Vector3.Distance(vector, transform.position) / range), 0.1f, 1f);
+    }
+
     public List<Actor> GetAllHitActors()
     {
         List<Actor> allHitActors = new List<Actor>();
