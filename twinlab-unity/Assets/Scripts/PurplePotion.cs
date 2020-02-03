@@ -91,7 +91,7 @@ public class PurplePotion : Potion
         else if(random > 80 && 85 > random)
         {
             Debug.Log("gravity");
-            Instantiate(gravityFieldPrefab, transform.position, Quaternion.identity);
+            Instantiate(gravityFieldPrefab, new Vector3(transform.position.x, transform.position.y, gravityFieldPrefab.transform.position.z), Quaternion.identity);
         }
         else if(random > 85 && 90 > random)
         {

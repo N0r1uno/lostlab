@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GravityField : MonoBehaviour
 {
+
+    public float gravityScale = 0.1f;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, collision.transform.position - transform.position);
@@ -15,7 +18,7 @@ public class GravityField : MonoBehaviour
                 {
                     if (collision.GetComponent<Rigidbody2D>() != null)
                     {
-                        collision.GetComponent<Rigidbody2D>().gravityScale = 0;
+                        collision.GetComponent<Rigidbody2D>().gravityScale = gravityScale;
                     }
                 }
             }
