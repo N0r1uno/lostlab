@@ -191,7 +191,7 @@ MonoBehaviour:
   jumpForce: 170
   invertedControls: 0
   currentItem: {fileID: 0}
-  throwStrength: 2
+  throwStrength: 200
   hand: {fileID: 8991614678497505978}
 --- !u!95 &3618817635422693192
 Animator:

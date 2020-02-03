@@ -129,7 +129,13 @@ public class Player : Actor
     {
         Inventory.SubtractFromCountOfPotion(currentItem.type, 1);
         currentItem.transform.parent = null;
-        Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - currentItem.transform.position).normalized;
+        Vector2 direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)currentItem.transform.position).normalized;
+        float distance = Vector2.Distance((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), (Vector2)currentItem.transform.position);
+        if(distance < 3f)
+        {
+            distance = 3f;
+        }
+        direction *= distance / 10;
         Rigidbody2D rb = currentItem.gameObject.AddComponent<Rigidbody2D>();
         rb.gravityScale = 1;
         rb.mass = currentItem.mass;
