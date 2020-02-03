@@ -56329,6 +56329,41 @@ PrefabInstance:
       propertyPath: lm.m_Bits
       value: 2048
       objectReference: {fileID: 0}
+    - target: {fileID: 7026320075086564259, guid: 4e991fd5997f74641937caad27f4fc86,
+        type: 3}
+      propertyPath: m_Parameters.numCornerVertices
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026320075086564259, guid: 4e991fd5997f74641937caad27f4fc86,
+        type: 3}
+      propertyPath: m_Parameters.numCapVertices
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026320075086564259, guid: 4e991fd5997f74641937caad27f4fc86,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026320075086564259, guid: 4e991fd5997f74641937caad27f4fc86,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026320075086564259, guid: 4e991fd5997f74641937caad27f4fc86,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026320075086564259, guid: 4e991fd5997f74641937caad27f4fc86,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.17129707
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026320075086564259, guid: 4e991fd5997f74641937caad27f4fc86,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e991fd5997f74641937caad27f4fc86, type: 3}
 --- !u!1001 &4510400078670968073
