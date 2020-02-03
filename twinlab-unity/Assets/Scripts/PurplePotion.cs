@@ -23,6 +23,7 @@ public class PurplePotion : Potion
     public float pushForce;
 
     [Header("Invert Effect")]
+    public float invertedTime;
 
     [Header("Light Effect")]
     public GameObject lightPrefab;
@@ -90,7 +91,7 @@ public class PurplePotion : Potion
         else if(random > 80 && 85 > random)
         {
             Debug.Log("gravity");
-            Instantiate(gravityFieldPrefab, transform.position, Quaternion.identity);
+            Instantiate(gravityFieldPrefab, new Vector3(transform.position.x, transform.position.y, gravityFieldPrefab.transform.position.z), Quaternion.identity);
         }
         else if(random > 85 && 90 > random)
         {
@@ -122,7 +123,9 @@ public class PurplePotion : Potion
         else if(random > 90 && 95 > random)
         {
             Debug.Log("inverted");
-            //inverted controls
+            List<Actor> actors = GetAllHitActors();
+            foreach (Actor actor in actors)
+                actor.InvertControls(invertedTime);
         }
         else if (random > 95 && 100 > random)
         {
