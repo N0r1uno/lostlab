@@ -15,8 +15,8 @@ public class Lever : Interactable
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
-        if (isOn) StartCoroutine(LeverUp());
-        else StartCoroutine(LeverDown());
+        if (isOn) renderer.sprite = sprites[0];
+        else renderer.sprite = sprites[sprites.Count - 1];
     }
 
     public override void Interact()
