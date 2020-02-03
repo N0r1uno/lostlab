@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [Header("Hardgecodete Ingredients")]
-    public int plasmaCount; //??
+    [Header("Potions")]
 
     static Inventory instance;
     void Start()

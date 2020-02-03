@@ -19,13 +19,21 @@ public class Potion : Item
     public float mass = 0.2f;
     public GameObject particles;
 
+    public void SimulateCollision()
+    {
+        OnCollisionEnter2D(null);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collider.enabled = false;
-        //particle system
-        ParticleSystem ps = Instantiate(particles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
-        Destroy(ps.gameObject, ps.main.duration);
-        //
+
+        if (particles != null)
+        {
+            ParticleSystem ps = Instantiate(particles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+            Destroy(ps.gameObject, ps.main.duration);
+        }
+
         Destroy(GetComponent<Rigidbody2D>());
         GetComponent<SpriteRenderer>().sprite = null;
         Effect();

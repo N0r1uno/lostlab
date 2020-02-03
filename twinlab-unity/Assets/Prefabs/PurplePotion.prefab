@@ -125,16 +125,13 @@ MonoBehaviour:
   type: 2
   range: 2
   damage: 10
-  particles: {fileID: 7436440785658571686, guid: 265855f8d6ebfcf4bb2ebce9408f1b96,
+  mass: 0.2
+  particles: {fileID: 8522527388044696366, guid: da7125b571958ed4ea699785a25cef61,
     type: 3}
-  maxFreezeTime: 3
-  freezeDmg: 10
-  fireDmg: 30
-  poisonDmg: 8
-  poisonTurns: 2
-  poisonTime: 0.5
+  percentDamage: 1
   gravityFieldPrefab: {fileID: 4445099736847252575, guid: d418a0f9320e81d4e8b2379031c3563d,
     type: 3}
   pushForce: 700
   invertedTime: 10
-  lightPrefab: {fileID: 0}
+  lightPrefab: {fileID: 83073126016250278, guid: 6064334c15de5394ea81466bef5423a0,
+    type: 3}
