@@ -7,7 +7,7 @@ public class GravityField : MonoBehaviour
 
     public float gravityScale = 0.1f;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, collision.transform.position - transform.position);
         for (int j = 0; j < hit.Length; j++)
