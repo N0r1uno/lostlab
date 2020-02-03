@@ -24,11 +24,18 @@ public class Player : Actor
 
     public void ApplyInteraction()
     {
-        if (input.scrollWheel != 0f)
-            if (input.scrollWheel > 0f)
-                PotionSelector.ScrollRight();
-            else
-                PotionSelector.ScrollLeft();
+        int alphakey = input.GetAlphaKey();
+        if (alphakey >= 1 && alphakey <= 5)
+        {
+            PotionSelector.Set(alphakey - 1);
+        } else
+        {
+            if (input.scrollWheel != 0f)
+                if (input.scrollWheel > 0f)
+                    PotionSelector.ScrollLeft();
+                else
+                    PotionSelector.ScrollRight();
+        }
 
         if (input.isInteracting && interactable != null)
             interactable.Interact();
@@ -80,40 +87,62 @@ public class Player : Actor
         }
     }
 
-    private void SetNewItem(GameObject prefab)
-    {
-        if (currentItem != null && !currentItem.HasBeenThrown())
-            Destroy(currentItem.gameObject);
-
-        if (prefab != null)
-        {          
-            currentItem = null;
-            currentItem = Instantiate(prefab, hand.position, Quaternion.identity, hand).GetComponent<Potion>();
-        }
-        else currentItem = null;
-    }
-
     public void UseItem()
     {
+        PotionSelector.PotionElement selected = PotionSelector.GetSelectedPotionElement();
 
-        if (currentItem == null || (currentItem != null && currentItem.type != PotionSelector.GetSelectedPotionType() && !currentItem.HasBeenThrown() ))
-            if (PotionSelector.GetSelectedPotionElement().GetCount() > 0)
-                SetNewItem(PotionSelector.GetSelectedPotionElement().prefab);
-            else SetNewItem(null);
+        //currentItem ist momentan leer, aber neues, verfuegbares potion ist ausgewaehlt
+        if (currentItem == null && selected.GetCount() > 0)
+            currentItem = Instantiate(selected.prefab, hand.position, Quaternion.identity, hand).GetComponent<Potion>();
 
-
-        if (currentItem != null && !currentItem.HasBeenThrown())        {
-            if (input.isFiring)
+        //currentItem ist vorhanden
+        if (currentItem != null)
+        {
+            //currentItem wurde noch nicht geworfen und es wurde ein neues potion gewaehlt
+            if (!currentItem.HasBeenThrown() && PotionSelector.GetSelectedPotionType() != currentItem.type)
             {
-                Inventory.SubtractFromCountOfPotion(currentItem.type, 1);
-
-                currentItem.transform.parent = null;
-                Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - currentItem.transform.position).normalized;
-                Rigidbody2D rb = currentItem.gameObject.AddComponent<Rigidbody2D>();
-                rb.gravityScale = 1;
-                rb.AddForce(direction * throwStrength * 500);
-                currentItem.Throw();   
+                //momentan ausgewaehltes zerstoeren
+                Destroy(currentItem.gameObject);
+                currentItem = null;
+                //falls neues ausgewaehltes verfuegbar, erstellen
+                if (selected.GetCount() > 0)
+                    currentItem = Instantiate(selected.prefab, hand.position, Quaternion.identity, hand).GetComponent<Potion>();
             }
-        }           
+
+            //falls mausklick, currentItem vorhanden und momentanes currentItem noch nicht geworfen...
+            if (input.isFiring && currentItem != null && !currentItem.HasBeenThrown())
+            {
+                ThrowPotion(); //werfen
+                StartCoroutine(RespawnPotionCoroutine(currentItem)); //respawnroutine starten
+            }
+        }
+    }
+
+    private void ThrowPotion()
+    {
+        Inventory.SubtractFromCountOfPotion(currentItem.type, 1);
+        currentItem.transform.parent = null;
+        Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - currentItem.transform.position).normalized;
+        Rigidbody2D rb = currentItem.gameObject.AddComponent<Rigidbody2D>();
+        rb.gravityScale = 1;
+        rb.AddForce(direction * throwStrength * 500);
+        currentItem.Throw();        
+    }
+
+    IEnumerator RespawnPotionCoroutine(Potion thrownPotion)
+    {
+        yield return new WaitForSeconds(0.2f); //cooldown
+        PotionSelector.PotionElement selected = PotionSelector.GetSelectedPotionElement();
+        //wenn currentItem==null ist das potion wahrscheinlich schon geplatzt, ersetzen in UseItem()
+        //wenn currentItem vorhanden
+        if (currentItem != null)
+        {
+            //geworfenen Potion ist noch im flug
+            if (currentItem == thrownPotion)
+            {
+                if (selected.GetCount() > 0)
+                    currentItem = Instantiate(selected.prefab, hand.position, Quaternion.identity, hand).GetComponent<Potion>();
+            } 
+        }    
     }
 }
