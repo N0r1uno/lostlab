@@ -22,8 +22,9 @@ public class Actor : MonoBehaviour
     public float speed;
     public float inAirSpeed;
     public float jumpForce;
-    public InputAction input;
+    public bool invertedControls;
 
+    public InputAction input;
     private new Rigidbody2D rigidbody;
     private new Collider2D collider;
     private SpriteRenderer spriteRenderer;
@@ -47,8 +48,10 @@ public class Actor : MonoBehaviour
 
     public void ApplyMovement()
     {
-        bool grounded = IsGrounded();
-        if (grounded)
+        if (invertedControls)
+            input.Invert();
+
+        if (IsGrounded())
         {
             if (input.isJumping)
             {

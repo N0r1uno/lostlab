@@ -17,6 +17,11 @@ public class InputAction
         isInteracting = false;
     }
 
+    public void Invert()
+    {
+        horizontalInput = -horizontalInput;
+    }
+
     public void Set(float horizontalInput, float scrollWheel, bool isJumping, bool isCrouching, bool isSprinting, bool isFiring, bool isInteracting, bool[] alphakeys)
     {
         this.horizontalInput = horizontalInput;
