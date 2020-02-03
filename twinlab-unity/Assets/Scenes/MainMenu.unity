@@ -7053,7 +7053,7 @@ GameObject:
   - component: {fileID: 309071911}
   - component: {fileID: 309071910}
   - component: {fileID: 309071909}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8706,7 +8706,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f0061dad9c95fe54b86176ec182f5fe0, type: 2}
+  - {fileID: 2100000, guid: 4a1b4c1e1c2f6e448b9955da3fbd2d5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9310,12 +9310,12 @@ PrefabInstance:
     - target: {fileID: 5300272739234296865, guid: 325eb779c666ec04ba3c8915393ffe50,
         type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5300272739234296865, guid: 325eb779c666ec04ba3c8915393ffe50,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5300272739234296877, guid: 325eb779c666ec04ba3c8915393ffe50,
         type: 3}

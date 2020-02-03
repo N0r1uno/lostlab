@@ -6,7 +6,7 @@ public class InputAction
 {
     public bool[] alphakeys;
     public float horizontalInput, scrollWheel;
-    public bool isJumping, isCrouching, isSprinting, isFiring, isInteracting;
+    public bool isJumping, isCrouching, isSprinting, isFiring, isInteracting, escape;
 
     public InputAction()
     {
@@ -22,7 +22,7 @@ public class InputAction
         horizontalInput = -horizontalInput;
     }
 
-    public void Set(float horizontalInput, float scrollWheel, bool isJumping, bool isCrouching, bool isSprinting, bool isFiring, bool isInteracting, bool[] alphakeys)
+    public void Set(float horizontalInput, float scrollWheel, bool isJumping, bool isCrouching, bool isSprinting, bool isFiring, bool isInteracting, bool escape, bool[] alphakeys)
     {
         this.horizontalInput = horizontalInput;
         this.scrollWheel = scrollWheel;
@@ -31,6 +31,7 @@ public class InputAction
         this.isSprinting = isSprinting;
         this.isFiring = isFiring;
         this.isInteracting = isInteracting;
+        this.escape = escape;
         this.alphakeys = alphakeys;
     }
 
@@ -59,7 +60,7 @@ public class InputAction
                                         Input.GetKeyDown(KeyCode.Alpha9)} ;
 
         Set(Input.GetAxis("Horizontal"), Input.GetAxis("Mouse ScrollWheel"), Input.GetKeyDown(KeyCode.Space), Input.GetKey(KeyCode.LeftControl), 
-            Input.GetKey(KeyCode.LeftShift), Input.GetKeyDown(KeyCode.Mouse0), Input.GetKeyDown(KeyCode.F), alphakeys);
+            Input.GetKey(KeyCode.LeftShift), Input.GetKeyDown(KeyCode.Mouse0), Input.GetKeyDown(KeyCode.F), Input.GetKeyDown(KeyCode.Escape) , alphakeys);
     }
 
     override 
