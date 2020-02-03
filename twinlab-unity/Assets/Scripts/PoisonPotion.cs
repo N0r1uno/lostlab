@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PoisonPotion : Potion
 {
+    public float time;
+    public int takes;
 
     public new void Start()
     {
@@ -13,6 +15,10 @@ public class PoisonPotion : Potion
 
     public override void Effect()
     {
-        Debug.Log("Poison stuff");
+        List<Actor> actors = GetAllHitActors();
+        foreach (Actor actor in actors)
+        {
+            actor.GetComponent<PoisonEffect>().Poison(time, damage, takes);
+        }
     }
 }

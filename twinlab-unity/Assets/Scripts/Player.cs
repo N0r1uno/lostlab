@@ -40,7 +40,6 @@ public class Player : Actor
         if (interactable != null)
         {
             interactable.ShowMessage(true);
-            Debug.Log("Entered Interactable Trigger");
         }
     }
 
@@ -59,7 +58,6 @@ public class Player : Actor
     public override void Die()
     {
         //reset data
-        Debug.Log("Player died");
         Freezable f = GetComponent<Freezable>();
         if (f != null) f.Unfreeze();
 
@@ -74,9 +72,11 @@ public class Player : Actor
     {
         if (collision.GetComponent<Interactable>() != null)
         {
-            interactable.ShowMessage(false);
-            Debug.Log("Left Interactable Trigger");
-            interactable = null;
+            if (interactable != null)
+            {
+                interactable.ShowMessage(false);
+                interactable = null;
+            }
         }
     }
 

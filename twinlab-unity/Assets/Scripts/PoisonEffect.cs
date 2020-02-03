@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PosionEffect : MonoBehaviour
+public class PoisonEffect : MonoBehaviour
 {
     private Actor actor;
 
     public bool isPoisoned;
-    public int takeDamageCount;
     private int takesLeft;
-    public float damage;
+    private float damage;
 
     private bool hasActor = false;
     void Start()
@@ -18,12 +17,11 @@ public class PosionEffect : MonoBehaviour
         hasActor = actor != null;
     }
 
-    public void Poison(float time)
+    public void Poison(float time, float dmg, int takes)
     {
-        if (hasActor)
-            actor.enabled = false;
+        damage = dmg;
         TakeDamage(damage);
-        takesLeft = takeDamageCount;
+        takesLeft = takes;
         isPoisoned = true;
         StartCoroutine(UnfreezeCoroutine(time));
     }
@@ -34,6 +32,8 @@ public class PosionEffect : MonoBehaviour
         if(takesLeft > 0)
         {
             TakeDamage(damage);
+            takesLeft--;
+            StartCoroutine(UnfreezeCoroutine(t));
         }
         else
         {
