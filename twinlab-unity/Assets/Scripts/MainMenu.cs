@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public int sceneToLoad;
-
+    public int showCaseScene;
     void Start()
     {
         
@@ -14,7 +14,9 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKey)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            SceneManager.LoadScene(showCaseScene);
+        else if (Input.anyKey)
             SceneManager.LoadScene(sceneToLoad);
     }
 }
